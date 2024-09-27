@@ -15,7 +15,6 @@ const Header = () => {
         if (token) {
             try {
                 const decoded = jwtDecode(token);
-                // Check if the role is 'Admin'
                 setIsAdmin(decoded.role === 'Admin');
             } catch (error) {
                 console.error('Failed to decode token:', error);

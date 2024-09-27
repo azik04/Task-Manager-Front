@@ -47,12 +47,10 @@ const UserInTask = () => {
         <div className="main-info-block">
             <div className="main-info-block-header">
                 <div className="main-info-block-header-left">
-                    <p>Tapşırığa İstifadəçiləri Düzəlt</p>
+                    <p>İstifadəçilərı Düzəlt</p>
                 </div>
                 <div className="main-info-block-header-right">
-                    <a href="#" onClick={openCreatePopup}>
-                        <i className="fa-solid fa-plus"></i> İstifadəçi Əlavə Et
-                    </a>
+                    <a href="#" onClick={openCreatePopup}><i className="fa-solid fa-plus"></i> Əlavə et</a>
                 </div>
             </div>
             <div className="main-info-block-table">

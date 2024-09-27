@@ -19,18 +19,18 @@ const CreateComment = ({ onClose }) => {
             taskId: id,     
             userId: userId  
         };
-        console.log("Payload to send:", commentData);  
-    
+        console.log("Göndəriləcək məlumat:", commentData);  
+
         try {
             const response = await axios.post(`https://localhost:7146/api/Comment`, commentData);
-            console.log("Comment created successfully", response.data);
+            console.log("Şərh uğurla yaradıldı", response.data);
             onClose(); 
             window.location.reload();
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 setErrors(error.response.data.errors);
             } else {
-                setError('An unexpected error occurred. Please try again.');
+                setError('Gözlənilməz bir xəta baş verdi. Zəhmət olmasa, yenidən cəhd edin.');
             }
         }
     };
@@ -40,27 +40,27 @@ const CreateComment = ({ onClose }) => {
             <div className="pop-order" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '40%', maxHeight: '98%', overflowY: 'auto' }}>
                 <div className="pop-order-header">
                     <div className="pop-order-header-name">
-                        <h2>Create Comment</h2>
+                        <h2>Şərh Yaradın</h2>
                     </div>
                     <div className="pop-order-header-icon">
-                        <button onClick={onClose}><img src={Photo} alt="Close" /></button>
+                        <button onClick={onClose}><img src={Photo} alt="Bağla" /></button>
                     </div>
                 </div>
                 <div className="pop-order-main">
                     <div className="pop-order-main-one">
-                        <p>Message</p>
+                        <p>Mesaj</p>
                         <input 
                             type="text" 
                             value={message} 
                             onChange={(e) => setMessage(e.target.value)} 
-                            placeholder="Enter your comment" 
+                            placeholder="Şərhinizi daxil edin" 
                         />
                         {errors.Message && <span className="error">{errors.Message[0]}</span>} 
                     </div>
                     <div className="pop-order-main-footer">
                         <div className="pop-order-main-footer-date"></div>
                         <div className="pop-order-main-footer-btn">
-                            <button className='pop-order-main-footer-btn-all' onClick={fetchPost}>Done</button>
+                            <button className='pop-order-main-footer-btn-all' onClick={fetchPost}>Tamamla</button>
                         </div>
                     </div>
                 </div>

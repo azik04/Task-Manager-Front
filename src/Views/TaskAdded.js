@@ -101,7 +101,6 @@ const Task = () => {
             <div className="main-file-comment">
                 <Comment />
                 <File />
-                <UserInTask />
             </div>
             {remPopUp && <RemoveTask onClose={closeRemPopUp} id={id} />}
             {isEditPopupVisible && <EditTask id={id} onClose={closePopUpVisible} />}

@@ -21,7 +21,7 @@ const Nav = () => {
                 <div className="navbar-content-menu-options">
                     <div className="navbar-content-menu-options-new">
                         <button onClick={handleOpenCreatePopup}>
-                            <p>Yeni Tema Əlavə Et</p>
+                            <p>Yeni Layihəni Yarat</p>
                             <i className="fa-solid fa-plus"></i>
                         </button>
                     </div>

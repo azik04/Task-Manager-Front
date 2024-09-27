@@ -24,7 +24,7 @@ const Users = () => {
                 const res = await axios.get(`https://localhost:7146/api/User`);
                 setUsers(res.data.data);
             } catch (error) {
-                console.error('Error fetching users:', error);
+                console.error('İstifadəçiləri əldə edərkən xəta:', error);
             }
         };
         fetchUser();

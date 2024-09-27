@@ -42,7 +42,7 @@ const RemoveFile = ({ onClose, documentId }) => {
                         <div className="pop-order-main-footer-date">
                         </div>
                         <div className="pop-order-main-footer-btn">
-                            <button className='pop-order-main-footer-btn-all' onClick={remItem} disabled={loading}>İmtina et</button>
+                            <button className='pop-order-main-footer-btn-all' onClick={remItem} disabled={loading}>Sil</button>
                         </div>
                     </div>
                 </div>

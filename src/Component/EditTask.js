@@ -84,7 +84,7 @@ const EditTask = ({ id, onClose }) => {
                             <p>Status</p>
                             <select value={status} onChange={(e) => setStatus(e.target.value)} required>
                                 <option value="" disabled>Status seçin</option>
-                                <option value="on track">Yolda</option>
+                                <option value="on track">İzlənir</option>
                                 <option value="at risk">Riskdə</option>
                                 <option value="behind">Gecikmiş</option>
                             </select>

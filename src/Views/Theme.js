@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import RemoveTheme from '../Component/RemoveTheme';
 
 const Theme = () => {
     const [data, setData] = useState([]);
     const [added, setAdded] = useState([]);
     const [userId, setUserId] = useState(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [themeToRemove, setThemeToRemove] = useState(null);
 
     useEffect(() => {
         const storedUserId = localStorage.getItem("UserId"); 
@@ -15,18 +18,15 @@ const Theme = () => {
             console.error('Yerli saxlama daxilində UserId tapılmadı');
         }
     }, []);
+
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
+
     useEffect(() => {
         if (userId) {
             const fetchThemes = async () => {
                 try {
                     const res = await axios.get(`https://localhost:7146/api/Theme/userId/${userId}`);
-                    console.log("Theme",res.data.data)
-                    if (Array.isArray(res.data.data)) {
-                        setData(res.data.data);
-                    } else {
-                        console.error('Məlumat bir array deyil:', res.data.result.data);
-                    }
+                    setData(res.data.data || []);
                 } catch (error) {
                     console.error('Layihələri əldə edərkən xəta:', error);
                 }
@@ -35,12 +35,7 @@ const Theme = () => {
             const fetchAddedThemes = async () => {
                 try {
                     const res = await axios.get(`https://localhost:7146/api/UserTask/${userId}/theme`);
-                    console.log("Əlavə edilmiş", res.data);
-                    if (Array.isArray(res.data)) {
-                        setAdded(res.data);
-                    } else {
-                        console.error('Məlumat bir array deyil:', res.data);
-                    }
+                    setAdded(res.data || []);
                 } catch (error) {
                     console.error('Əlavə edilmiş layihələri əldə edərkən xəta:', error);
                 }
@@ -51,13 +46,9 @@ const Theme = () => {
         }
     }, [userId]);
 
-    const handleRemove = async (id) => {
-        try {
-            await axios.delete(`https://localhost:7146/api/Theme?id=${id}`);
-            setData((prevData) => prevData.filter(theme => theme.id !== id));
-        } catch (error) {
-            console.error('Layihəni silərkən xəta:', error);
-        }
+    const handleRemove = (id) => {
+        setThemeToRemove(id);
+        setIsPopupOpen(true);
     };
 
     return (
@@ -90,8 +81,8 @@ const Theme = () => {
                         {added.length > 0 ? (
                             added.map((item) => (
                                 <div key={item.id} className="theme-item">
-                                    <Link to={`/Task/${item.id}`} className="theme-link">
-                                        {item.taskName} {/* API cavabında bu xassənin mövcud olduğundan əmin olun */}
+                                    <Link to={`/Task/${item.id}/Added`} className="theme-link">
+                                        {item.taskName}
                                     </Link>
                                 </div>
                             ))
@@ -100,6 +91,9 @@ const Theme = () => {
                         )}
                     </div>
                 </div>
+                {isPopupOpen && (
+                    <RemoveTheme onClose={() => setIsPopupOpen(false)} themeId={themeToRemove} setData={setData} />
+                )}
             </div>
         </main>
     );

@@ -7,7 +7,7 @@ import Theme from './Views/Theme';
 import Tasks from './Views/Tasks';
 import Task from './Views/Task';
 import Users from './Views/Users';
-
+import TaskAdded from './Views/TaskAdded'
 const App = () => {
     return (
         <BrowserRouter>
@@ -18,6 +18,7 @@ const App = () => {
                     <Route path="/Theme" element={<Theme />} />
                     <Route path="Theme/:themeId/Task" element={<Tasks />} />
                     <Route path="Task/:id" element={<Task />} />
+                    <Route path="Task/:id/Added" element={<TaskAdded />} />
                     <Route path="Users" element={<Users />} />
                 </Route>
             </Route>

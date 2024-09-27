@@ -14,11 +14,12 @@ const Comment = () => {
     const { id } = useParams();
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
+    
     useEffect(() => {
         const fetchData = async (id) => {
             try {
                 const res = await axios.get(`https://localhost:7146/api/Comment?taskId=${id}`);
-                console.log("Commentler", res.data);
+                console.log("Şərhlər", res.data);
                 const comments = res.data.data || [];
                 setItems(comments);
                 fetchUserNames(comments); 
@@ -34,7 +35,7 @@ const Comment = () => {
         const userIds = [...new Set(comments.map(comment => comment.userId))];
 
         if (userIds.length === 0) {
-            console.log("No user IDs found.");
+            console.log("İstifadəçi ID-ləri tapılmadı.");
             return; 
         }
 
@@ -43,10 +44,10 @@ const Comment = () => {
         await Promise.all(userIds.map(async (userId) => {
             try {
                 const response = await axios.get(`https://localhost:7146/api/User/${userId}`);
-                console.log(`Response for user ID ${userId}:`, response.data.data);
+                console.log(`İstifadəçi ID ${userId} üçün cavab:`, response.data.data);
                 userMap[userId] = response.data.data.userName; 
             } catch (error) {
-                console.error(`Error fetching user ID ${userId}:`, error);
+                console.error(`İstifadəçi ID ${userId}-ni alarkən xəta baş verdi:`, error);
             }
         }));
 
@@ -87,6 +88,13 @@ const Comment = () => {
             </div>
             <div className="main-info-block-table">
                 <table>
+                    <thead>
+                        <tr>
+                            <th>İSTİFADƏÇİ</th>
+                            <th>ŞƏRH</th>
+                            <th>NƏŞR TARİXİ</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {items.length > 0 ? (
                             items.map((item) => (

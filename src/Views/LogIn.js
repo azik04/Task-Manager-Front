@@ -23,7 +23,7 @@ const LogIn = () => {
                 password: password
             }, { withCredentials: true });
 
-            console.log('Response:', res.data); 
+            console.log('Cavab:', res.data); 
 
             if (res.data.statusCode === 200) {
                 const token = res.data.data; 
@@ -35,14 +35,14 @@ const LogIn = () => {
                 localStorage.setItem("UserId", userId);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
 
-                console.log('Login successful');
+                console.log('Giriş müvəffəqiyyətlidir');
                 navigate(`/Theme`);
             } else {
-                setError(res.data.Description || 'Login failed.'); 
+                setError(res.data.Description || 'Giriş alınmadı.'); 
             }
         } catch (error) {
-            console.error('Login failed', error.response);
-            const errorMessage = error.response?.data?.description || 'An error occurred. Please try again.';
+            console.error('Giriş alınmadı', error.response);
+            const errorMessage = error.response?.data?.description || 'Bir xəta baş verdi. Zəhmət olmasa, yenidən cəhd edin.';
             setError(errorMessage);
 
             if (error.response?.data?.errors) {
@@ -54,12 +54,11 @@ const LogIn = () => {
     return (
         <section className="login">
             <div className="login-left">
-                <img src={Photo} alt="Left Background" />
+                <img src={Photo} alt="Sol Fon" />
             </div>
             <div className="login-right">
                 <div className="login-right-main">
-                    <h2>Log In</h2>
-                    <p>Please fill your information below</p>
+                    <h2>Giriş</h2>
                     {error && <div className="error">{error}</div>}
                     <div className="login-right-main-inp">
                         <input 
@@ -69,14 +68,14 @@ const LogIn = () => {
                             onChange={(e) => setUserName(e.target.value)} 
                             required
                         />
-                        <img src={Shape} alt="Email Icon" />
+                        <img src={Shape} alt="E-mail İkonu" />
                     {errors.UserName && <span className='error'>{errors.UserName[0]}</span>} 
                     </div>
                     
                     <div className="login-right-main-inp">
                         <input 
                             type={showPassword ? "text" : "password"} 
-                            placeholder="Password" 
+                            placeholder="Şifrə" 
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} 
                             required
@@ -89,7 +88,7 @@ const LogIn = () => {
                     {errors.Password && <span className='error'>{errors.Password[0]}</span>} 
                     </div>
                     
-                    <button onClick={fetchPost}>Next</button>
+                    <button onClick={fetchPost}>İrəlilə</button>
                 </div>
             </div>
         </section>

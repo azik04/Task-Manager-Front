@@ -25,7 +25,7 @@ const RemoveUserFromTask = ({ onClose, userId, taskId }) => {
                     </div>
                 </div>
                 <div className="pop-order-main">
-                    <p>Bu istifadəçini silmək istəyirsiniz?</p>
+                    <p>Bu istifadəçini Tapşırıqdan silmək istəyirsiniz?</p>
                     <div className="pop-order-main-footer">
                         <div className="pop-order-main-footer-date">
                         </div>

@@ -47,7 +47,7 @@ const CreateTheme = ({ onClose }) => {
             <div className="pop-order" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '40%', maxHeight: '98%', overflowY: 'auto' }}>
                 <div className="pop-order-header">
                     <div className="pop-order-header-name">
-                        <h2>Mövzu Yarat</h2>
+                        <h2>Layihəni Yarat</h2>
                     </div>
                     <div className="pop-order-header-icon">
                         <button onClick={onClose}><img src={Photo} alt="Bağla" /></button>

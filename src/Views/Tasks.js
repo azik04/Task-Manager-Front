@@ -4,9 +4,9 @@ import axios from 'axios';
 import CreateTask from '../Component/CreateTask';
 
 const Tasks = () => {
-    const [items, setItems] = useState([]); // Not done tasks
-    const [done, setDone] = useState([]); // Done tasks
-    const [userNames, setUserNames] = useState({}); // To store user names
+    const [items, setItems] = useState([]);  
+    const [done, setDone] = useState([]);
+    const [userNames, setUserNames] = useState({}); 
     const [isCreatePopupVisible, setCreatePopupVisible] = useState(false);
     const { themeId } = useParams();
 
@@ -17,6 +17,7 @@ const Tasks = () => {
     const handleCloseCreatePopup = () => {
         setCreatePopupVisible(false);
     };
+
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
 
     useEffect(() => {
@@ -26,20 +27,20 @@ const Tasks = () => {
                 setItems(res.data.data);
                 fetchUserNames(res.data.data); 
             } catch (error) {
-                console.error('Error fetching not done tasks:', error);
+                console.error('Tamamlanmamış tapşırıqları əldə edərkən xəta:', error);
                 setItems([]);
             }
         };
         fetchNotDone();
     }, [themeId]);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
+
     useEffect(() => {
         const fetchDone = async () => {
             try {
                 const res = await axios.get(`https://localhost:7146/api/Task/done?themeId=${themeId}`);
                 setDone(res.data.data);
             } catch (error) {
-                console.error('Error fetching done tasks:', error);
+                console.error('Tamamlanmış tapşırıqları əldə edərkən xəta:', error);
                 setDone([]);
             }
         };
@@ -50,7 +51,7 @@ const Tasks = () => {
         const userIds = [...new Set(tasks.map(task => task.executiveUserId))];
     
         if (userIds.length === 0) {
-            console.log("No user IDs found.");
+            console.log("İstifadəçi ID-ləri tapılmadı.");
             return; 
         }
     
@@ -60,26 +61,20 @@ const Tasks = () => {
             try {
                 const response = await axios.get(`https://localhost:7146/api/User/${id}`);
                 
-                console.log(`Response for user ID ${id}:`, response.data.data);
+                console.log(`İstifadəçi ID ${id} üçün cavab:`, response.data.data);
                 
                 if (response.data.data && response.data.data.id && response.data.data.userName) {
                     userMap[response.data.data.id] = response.data.data.userName; 
                 } else {
-                    console.warn(`User data for ID ${id} is missing expected fields.`);
+                    console.warn(`ID ${id} üçün istifadəçi məlumatları gözlənilən sahələri əskikdir.`);
                 }
             } catch (error) {
-                console.error(`Error fetching user ID ${id}:`, error);
+                console.error(`ID ${id} üçün xəta:`, error);
             }
         }));
     
         setUserNames(userMap);
     };
-    
-
-    
-    
-    
-    
 
     const compTask = async (id) => {
         try {
@@ -88,23 +83,23 @@ const Tasks = () => {
             });
             window.location.reload();
         } catch (error) {
-            console.error('Error completing task:', error);
+            console.error('Tapşırığı tamamlarkən xəta:', error);
         }
     };
 
     return (
         <main>
             <div className="main">
-                {/* Not Done Tasks Section */}
+                {/* Tamamlanmamış tapşırıqlar bölməsi */}
                 <div className="main-filter">
                     <div className="main-filter-total">
-                        <h2>Not Completed</h2>
-                        <p><strong>Total: {items.length} tasks</strong></p>
+                        <h2>Tamamlanmamış</h2>
+                        <p><strong>Cəmi: {items.length} tapşırıq</strong></p>
                     </div>
                     <div className="navbar-content-menu-options">
                         <div className="navbar-content-menu-options-new">
                             <button onClick={handleOpenCreatePopup}>
-                                <p>Add New Task</p>
+                                <p>Yeni Tapşırıq Əlavə Et</p>
                                 <i className="fa-solid fa-plus"></i>
                             </button>
                         </div>
@@ -116,48 +111,46 @@ const Tasks = () => {
                             <tr>
                                 <th></th>
                                 <th>ID</th>
-                                <th>Task Name</th>
-                                <th>Description</th>
+                                <th>Tapşırıq Adı</th>
                                 <th>Status</th>
-                                <th>Priority</th>
-                                <th>Executor</th>
-                                <th>Deadline</th>
-                                <th>More</th>
+                                <th>Prioritet</th>
+                                <th>İcraçı</th>
+                                <th>Son Tarix</th>
+                                <th>Daha çox</th>
                             </tr>
                         </thead>
                         <tbody>
                             {items.length > 0 ? (
                                 items.map((item) => (
                                     <tr key={item.id}>
-                                        <td className='Done_done'>
+                                        <td className='Done'>
                                             <i onClick={() => compTask(item.id)} className="fa-regular fa-circle-check"></i>
                                         </td>
                                         <td>{item.id}</td>
                                         <td>{item.taskName}</td>
-                                        <td>{item.taskDescription}</td>
                                         <td>{item.status}</td>
                                         <td>{item.priority}</td>
-                                        <td>{userNames[item.executiveUserId] || 'Loading...'}</td>
+                                        <td>{userNames[item.executiveUserId] || 'Yüklənir...'}</td>
                                         <td>{item.deadLine}</td>
                                         <td>
-                                            <Link to={`/Task/${item.id}`}>More</Link>
+                                            <Link to={`/Task/${item.id}`}>Daha çox</Link>
                                         </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="8">No tasks available</td>
+                                    <td colSpan="8">Tapşırıq mövcud deyil</td>
                                 </tr>
                             )}
                         </tbody>
                     </table>
                 </div>
 
-                {/* Done Tasks Section */}
+                {/* Tamamlanmış tapşırıqlar bölməsi */}
                 <div className="main-filter">
                     <div className="main-filter-total">
-                        <h2>Completed</h2>
-                        <p><strong>Total: {done.length} tasks</strong></p>
+                        <h2>Tamamlanmış</h2>
+                        <p><strong>Cəmi: {done.length} tapşırıq</strong></p>
                     </div>
                 </div>
                 <div className="main-table">
@@ -166,35 +159,35 @@ const Tasks = () => {
                             <tr>
                                 <th></th>
                                 <th>ID</th>
-                                <th>Task Name</th>
-                                <th>Description</th>
+                                <th>Tapşırıq Adı</th>
                                 <th>Status</th>
-                                <th>Priority</th>
-                                <th>Deadline</th>
-                                <th>More</th>
+                                <th>Prioritet</th>
+                                <th>İcraçı</th>
+                                <th>Son Tarix</th>
+                                <th>Daha çox</th>
                             </tr>
                         </thead>
                         <tbody>
                             {done.length > 0 ? (
                                 done.map((item) => (
                                     <tr key={item.id}>
-                                        <td className='Done_done'>
+                                        <td className='notDone'>
                                             <i onClick={() => compTask(item.id)} className="fa-regular fa-circle-check"></i>
                                         </td>
                                         <td>{item.id}</td>
                                         <td>{item.taskName}</td>
-                                        <td>{item.taskDescription}</td>
                                         <td>{item.status}</td>
                                         <td>{item.priority}</td>
+                                        <td>{userNames[item.executiveUserId] || 'Yüklənir...'}</td>
                                         <td>{item.deadLine}</td>
                                         <td>
-                                            <Link to={`/Task/${item.id}`}>More</Link>
+                                            <Link to={`/Task/${item.id}`}>Daha çox</Link>
                                         </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="8">No tasks available</td>
+                                    <td colSpan="8">Tapşırıq mövcud deyil</td>
                                 </tr>
                             )}
                         </tbody>
