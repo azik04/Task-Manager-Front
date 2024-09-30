@@ -7,7 +7,7 @@ import RemoveTask from '../Component/RemoveTask';
 import File from '../Component/File';
 import EditTask from '../Component/EditTask';
 import UserInTask from '../Component/UserInTask';
-
+import SubTask from '../Component/SubTask';
 const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.getFullYear() !== 1970
@@ -98,6 +98,7 @@ const Task = () => {
                     </div>
                 </div>
             </div>
+                <SubTask />
             <div className="main-file-comment">
                 <Comment />
                 <File />

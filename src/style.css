@@ -999,3 +999,15 @@ td button{
         flex-wrap: wrap;
     }
 }
+.subtask-container{
+    width: 70%;
+    margin: 50px auto;
+}
+.subtask-container-name button{
+    width: 150px;
+    margin-left: 100px;
+}
+.subtask-container-name{
+    display: flex;
+    align-items: center;
+}

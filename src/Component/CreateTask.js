@@ -93,7 +93,7 @@ const CreateTask = ({ onClose }) => {
                             <p>Status</p>
                             <select value={status} onChange={(e) => setStatus(e.target.value)}>
                                 <option value="" disabled>Status seçin</option>
-                                <option value="on track">İzlənir</option>
+                                <option value="on track">Prosesdedir</option>
                                 <option value="at risk">Riskdə</option>
                                 <option value="behind">Gecikmə</option>
                             </select>
