@@ -8,6 +8,7 @@ import RemoveUser from '../Component/RemoveUser';
 
 const Users = () => {
     const [users, setUsers] = useState([]);
+    const [admins, setAdmins] = useState([]);
     const [remPopUp, setRemPopUp] = useState(false);
     const [changeRolePopUp, setChangeRolePopUp] = useState(false);
     const [createUserPopUp, setCreateUserPopUp] = useState(false);
@@ -19,15 +20,33 @@ const Users = () => {
     const [changeEmailId, setChangeEmailId] = useState(null);
 
     useEffect(() => {
-        const fetchUser = async () => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
+    }, []);
+
+    useEffect(() => {
+        const fetchAdmins = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/User`);
-                setUsers(res.data.data);
+                const adminRes = await axios.get('https://localhost:7146/api/User/Admins');
+                setAdmins(adminRes.data.data);
+                console.log("adminRes", adminRes.data.data);
+            } catch (error) {
+                console.error('Adminləri əldə edərkən xəta:', error);
+            }
+        };
+        fetchAdmins();
+    }, []);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const userRes = await axios.get('https://localhost:7146/api/User/Users');
+                setUsers(userRes.data.data);
+                console.log("userRes", userRes.data.data);
             } catch (error) {
                 console.error('İstifadəçiləri əldə edərkən xəta:', error);
             }
         };
-        fetchUser();
+        fetchUsers();
     }, []);
 
     const openRemPopUp = (userId) => {
@@ -81,10 +100,11 @@ const Users = () => {
     return (
         <main>
             <div className="main">
+                {/* Admins Table */}
                 <div className="main-filter">
                     <div className="main-filter-total">
-                        <h2>Bütün İstifadəçilər</h2>
-                        <p><strong>Cəmi: {users.length} istifadəçi</strong></p>
+                        <h2>Bütün Adminlər</h2>
+                        <p><strong>Cəmi: {admins.length} admin</strong></p>
                     </div>
                     <div className="navbar-content-menu-options">
                         <div className="navbar-content-menu-options-new">
@@ -104,14 +124,54 @@ const Users = () => {
                                 <th>Emaili</th>
                                 <th>Emaili Dəyiş</th>
                                 <th>Şifrəni Dəyiş</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {admins.map(user => (
+                                <tr key={user.id}>
+                                    <td>{user.id}</td>
+                                    <td>{user.userName}</td>
+                                    <td>{user.email}</td>
+                                    <td>
+                                        <button onClick={() => openChangeEmailPopUp(user.id)}>Emaili Dəyiş</button>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => openChangePasswordPopUp(user.id)}>Şifrəni Dəyiş</button>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => openRemPopUp(user.id)}>Sil</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+                {/* Users Table */}
+                <div className="main-filter">
+                    <div className="main-filter-total">
+                        <h2>İstifadəçilər</h2>
+                        <p><strong>Cəmi: {users.length} istifadəçi</strong></p>
+                    </div>
+                </div>
+                <div className="main-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th className="main-table-name">İstifadəçi Adı</th>
+                                <th>Emaili</th>
+                                <th>Emaili Dəyiş</th>
+                                <th>Şifrəni Dəyiş</th>
                                 <th>Rolu Dəyiş</th>
                                 <th>Sil</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map(user => (
+                            {users.map((user, index) => (
                                 <tr key={user.id}>
-                                    <td>{user.id}</td>
+                                    <td>{index + 1}</td>
                                     <td>{user.userName}</td>
                                     <td>{user.email}</td>
                                     <td>
@@ -132,6 +192,7 @@ const Users = () => {
                     </table>
                 </div>
             </div>
+
             {remPopUp && <RemoveUser onClose={closeRemPopUp} userId={removeId} />}
             {changeRolePopUp && <ChangeRole onClose={closeChangeRolePopUp} userId={changeRoleId} />}
             {createUserPopUp && <CreateUser onClose={closeCreateUserPopUp} />}

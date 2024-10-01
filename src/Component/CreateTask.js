@@ -93,9 +93,9 @@ const CreateTask = ({ onClose }) => {
                             <p>Status</p>
                             <select value={status} onChange={(e) => setStatus(e.target.value)}>
                                 <option value="" disabled>Status seçin</option>
-                                <option value="on track">Prosesdedir</option>
-                                <option value="at risk">Riskdə</option>
-                                <option value="behind">Gecikmə</option>
+                                <option value="Prosesdedir">Prosesdedir</option>
+                                <option value="Riskdə">Riskdə</option>
+                                <option value="Gecikmə">Gecikmə</option>
                             </select>
                             {errors.Status && <span className='error'>{errors.Status[0]}</span>}
                         </div>
@@ -104,9 +104,9 @@ const CreateTask = ({ onClose }) => {
                             <p>Prioritet</p>
                             <select value={priority} onChange={(e) => setPriority(e.target.value)} >
                                 <option value="" disabled>Prioritet seçin</option>
-                                <option value="low">Aşağı</option>
-                                <option value="mid">Orta</option>
-                                <option value="high">Yüksək</option>
+                                <option value="Aşağı">Aşağı</option>
+                                <option value="Orta">Orta</option>
+                                <option value="Yüksək">Yüksək</option>
                             </select>
                             {errors.Priority && <span className='error'>{errors.Priority[0]}</span>}
                         </div>

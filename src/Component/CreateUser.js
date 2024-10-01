@@ -21,11 +21,15 @@ const CreateUser = ({ onClose }) => {
             onClose();
             window.location.reload(); 
         } catch (error) {
-            if (error.response && error.response.data.errors) {
-                setErrors(error.response.data.errors);
-            } else {
-                setErrors({ general: 'Gözlənilməz xəta baş verdi' });
-            }
+            console.log(error);
+            if (error.response) {
+                const { data } = error.response;
+                if (data.errors) {
+                    setErrors(data.errors);
+                } else if (data.description) {
+                    setErrors({ general: data.description }); 
+                } 
+            } 
         }
     };
 

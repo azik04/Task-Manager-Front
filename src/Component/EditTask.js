@@ -84,9 +84,9 @@ const EditTask = ({ id, onClose }) => {
                             <p>Status</p>
                             <select value={status} onChange={(e) => setStatus(e.target.value)} required>
                                 <option value="" disabled>Status seçin</option>
-                                <option value="on track">Prosesdedir</option>
-                                <option value="at risk">Riskdə</option>
-                                <option value="behind">Gecikmiş</option>
+                                <option value="Prosesdedir">Prosesdedir</option>
+                                <option value="Riskdə">Riskdə</option>
+                                <option value="Gecikmiş">Gecikmiş</option>
                             </select>
                             {errors.Status && <span className='Error'>{errors.Status[0]}</span>} 
                         </div>
@@ -94,9 +94,9 @@ const EditTask = ({ id, onClose }) => {
                             <p>Prioritet</p>
                             <select value={priority} onChange={(e) => setPriority(e.target.value)} required>
                                 <option value="" disabled>Prioritet seçin</option>
-                                <option value="low">Aşağı</option>
-                                <option value="mid">Orta</option>
-                                <option value="high">Yüksək</option>
+                                <option value="Aşağı">Aşağı</option>
+                                <option value="Orta">Orta</option>
+                                <option value="Yüksək">Yüksək</option>
                             </select>
                             {errors.Priority && <span className='Error'>{errors.Priority[0]}</span>} 
                         </div>

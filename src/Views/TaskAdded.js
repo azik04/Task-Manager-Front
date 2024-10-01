@@ -6,7 +6,7 @@ import Comment from '../Component/Comment';
 import RemoveTask from '../Component/RemoveTask';
 import File from '../Component/File';
 import EditTask from '../Component/EditTask';
-import UserInTask from '../Component/UserInTask';
+import SubTask from '../Component/SubTask';
 
 const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -56,9 +56,6 @@ const Task = () => {
                             <p>{details.taskName || 'N/A'}</p>
                         </div>
                         <div className="main-info-begin-options">
-                            <button onClick={createRemPopUp} className="main-info-begin-options-rem">
-                                Tapşırığı Sil
-                            </button>
                             <button className="main-info-begin-options-btns" onClick={popUpVisible}>
                                 <img src={Edit} alt="Redaktə et" className="edit-icon" />
                             </button>
@@ -98,6 +95,7 @@ const Task = () => {
                     </div>
                 </div>
             </div>
+                <SubTask />
             <div className="main-file-comment">
                 <Comment />
                 <File />

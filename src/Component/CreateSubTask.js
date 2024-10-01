@@ -64,9 +64,9 @@ const CreateSubTask = ({ onClose }) => {
                         <p>Prioritet</p>
                         <select value={priority} onChange={(e) => setPriority(e.target.value)} required>
                             <option value="" disabled>Prioritet seçin</option>
-                            <option value="low">Aşağı</option>
-                            <option value="mid">Orta</option>
-                            <option value="high">Yüksək</option>
+                            <option value="Aşağı">Aşağı</option>
+                            <option value="Orta">Orta</option>
+                            <option value="Yüksək">Yüksək</option>
                         </select>
                          {errors.Priority && <span className='error'>{errors.Priority[0]}</span>} 
 

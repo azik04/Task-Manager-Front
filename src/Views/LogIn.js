@@ -42,7 +42,7 @@ const LogIn = () => {
             }
         } catch (error) {
             console.error('Giriş alınmadı', error.response);
-            const errorMessage = error.response?.data?.description || 'Bir xəta baş verdi. Zəhmət olmasa, yenidən cəhd edin.';
+            const errorMessage = error.response?.data?.description ;
             setError(errorMessage);
 
             if (error.response?.data?.errors) {

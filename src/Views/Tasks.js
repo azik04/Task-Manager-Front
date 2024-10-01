@@ -110,7 +110,7 @@ const Tasks = () => {
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>ID</th>
+                                <th>No</th> {/* Changed to No */}
                                 <th>Tapşırıq Adı</th>
                                 <th>Status</th>
                                 <th>Prioritet</th>
@@ -121,12 +121,12 @@ const Tasks = () => {
                         </thead>
                         <tbody>
                             {items.length > 0 ? (
-                                items.map((item) => (
+                                items.map((item, index) => ( // Added index here
                                     <tr key={item.id}>
-                                        <td className='Done'>
+                                        <td className='NotDone_Sub'>
                                             <i onClick={() => compTask(item.id)} className="fa-regular fa-circle-check"></i>
                                         </td>
-                                        <td>{item.id}</td>
+                                        <td>{index + 1}</td> {/* Changed to index + 1 */}
                                         <td>{item.taskName}</td>
                                         <td>{item.status}</td>
                                         <td>{item.priority}</td>
@@ -158,7 +158,7 @@ const Tasks = () => {
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>ID</th>
+                                <th>No</th> {/* Changed to No */}
                                 <th>Tapşırıq Adı</th>
                                 <th>Status</th>
                                 <th>Prioritet</th>
@@ -169,12 +169,12 @@ const Tasks = () => {
                         </thead>
                         <tbody>
                             {done.length > 0 ? (
-                                done.map((item) => (
+                                done.map((item, index) => ( // Added index here
                                     <tr key={item.id}>
-                                        <td className='notDone'>
+                                        <td className='Done_Sub'>
                                             <i onClick={() => compTask(item.id)} className="fa-regular fa-circle-check"></i>
                                         </td>
-                                        <td>{item.id}</td>
+                                        <td>{index + 1}</td> {/* Changed to index + 1 */}
                                         <td>{item.taskName}</td>
                                         <td>{item.status}</td>
                                         <td>{item.priority}</td>
