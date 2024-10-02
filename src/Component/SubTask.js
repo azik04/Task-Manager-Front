@@ -98,7 +98,7 @@ const SubTask = () => {
                         {notDoneItems.length > 0 ? (
                             notDoneItems.map((item, index) => ( 
                                 <tr key={item.id}>
-                                    <td className='Done'>
+                                    <td className='NotDone_Sub'>
                                         <i onClick={() => compTask(item.id)} className="fa-regular fa-circle-check"></i>
                                     </td>
                                     <td>{index + 1}</td> 

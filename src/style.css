@@ -76,7 +76,7 @@ body {
 }
 
 .theme-link:hover {
-    color:rgb(242, 101, 34)#;
+    color:rgb(242, 101, 34);
 }
 
 .no-data {
@@ -292,6 +292,7 @@ main{
 }
 .main-info-begin-name{
     width: 100%;
+    font-weight: bold;
     display: flex;
     align-items: center;
 }
@@ -402,8 +403,11 @@ main{
     color: #7E92A2;
 }
 .text{
-    color: #526477;
-}
+    color: #252525;
+    word-wrap: break-word; 
+    word-break: break-all;
+    white-space: normal; 
+} 
 .main-info-blocks {
     width: calc(100% - 20px);
     margin-top: 20px;
@@ -1044,4 +1048,10 @@ td button{
 }
 .NotDone_Sub i:hover{
     color: green;
+}
+.subtask-container h2 {
+    color:#526477 ;
+}
+.subtask-container h3 {
+    color:#526477 ;
 }

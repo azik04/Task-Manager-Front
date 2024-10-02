@@ -11,7 +11,7 @@ const AddToTask = ({ onClose, taskId }) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const res = await axios.get('https://localhost:7146/api/User');
+                const res = await axios.get(`https://localhost:7146/${taskId}/GetUnassignedUsers`);
                 console.log("İstifadəçilər", res);
                 setUsers(res.data.data || []);
             } catch (error) {
