@@ -15,7 +15,7 @@ const File = () => {
     useEffect(() => {
         const fetchData = async (id) => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/File/task/${id}`);
+                const res = await axios.get(`http://test.loc/api/File/task/${id}`);
                 console.log("Fayllar", res.data.data);
                 setItems(res.data.data || []);  
             } catch (error) {
@@ -45,7 +45,7 @@ const File = () => {
 
     const downloadFile = async (fileId, fileName) => {
         try {
-            const res = await axios.get(`https://localhost:7146/api/File/${fileId}`, {
+            const res = await axios.get(`http://test.loc/api/File/${fileId}`, {
                 responseType: 'blob', 
             });
 

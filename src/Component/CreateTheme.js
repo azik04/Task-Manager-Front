@@ -24,7 +24,7 @@ const CreateTheme = ({ onClose }) => {
         }
         console.log("UserId",userId)
         try {
-            const res = await axios.post(`https://localhost:7146/api/Theme`, {
+            const res = await axios.post(`http://test.loc/api/Theme`, {
                 name: name,
                 userId: userId
             });

@@ -25,11 +25,11 @@ const Task = () => {
     useEffect(() => {
         const fetchDetails = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/Task/${id}`);
+                const res = await axios.get(`http://test.loc/api/Task/${id}`);
                 setDetails(res.data.data || {});
 
                 if (res.data.data && res.data.data.executiveUserId) {
-                    const userRes = await axios.get(`https://localhost:7146/api/User/${res.data.data.executiveUserId}`);
+                    const userRes = await axios.get(`http://test.loc/api/User/${res.data.data.executiveUserId}`);
                     setExecutiveUserName(userRes.data.data.userName); 
                 }
             } catch (error) {

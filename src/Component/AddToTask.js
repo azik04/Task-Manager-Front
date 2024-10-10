@@ -11,7 +11,7 @@ const AddToTask = ({ onClose, taskId }) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/${taskId}/GetUnassignedUsers`);
+                const res = await axios.get(`http://test.loc/${taskId}/GetUnassignedUsers`);
                 console.log("İstifadəçilər", res);
                 setUsers(res.data.data || []);
             } catch (error) {
@@ -32,7 +32,7 @@ const AddToTask = ({ onClose, taskId }) => {
                 return;
             }
 
-            await axios.post(`https://localhost:7146/api/UserTask/${taskId}/users/${selectedUserId}`);
+            await axios.post(`http://test.loc/api/UserTask/${taskId}/users/${selectedUserId}`);
             setSuccess('İstifadəçi tapşırığa müvəffəqiyyətlə əlavə edildi.');
             onClose(); 
             window.location.reload();

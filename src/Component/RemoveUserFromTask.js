@@ -5,7 +5,7 @@ import Photo from '../Photos/Cancel.svg';
 const RemoveUserFromTask = ({ onClose, userId, taskId }) => {
     const handleRemove = async () => {
         try {
-            await axios.delete(`https://localhost:7146/api/UserTask/${taskId}/users/${userId}`);
+            await axios.delete(`http://test.loc/api/UserTask/${taskId}/users/${userId}`);
             console.log("User removed:", userId);
             window.location.reload(); 
         } catch (error) {

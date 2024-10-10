@@ -9,7 +9,7 @@ const RemoveSubTask = ({ subId, onClose }) => {
         setError(null);
         
         try {
-            const response = await axios.delete(`https://localhost:7146/api/SubTask?id=${subId}`);
+            const response = await axios.delete(`http://test.loc/api/SubTask?id=${subId}`);
             console.log('Alt tapşırıq uğurla silindi', response.data);
             onClose();
             window.location.reload(); 

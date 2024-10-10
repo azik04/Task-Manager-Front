@@ -19,7 +19,7 @@ const CreateTask = ({ onClose }) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const res = await axios.get('https://localhost:7146/api/User');
+                const res = await axios.get('http://test.loc/api/User');
                 setUsers(res.data.data || []);
             } catch (error) {
                 console.error('İstifadəçiləri əldə edərkən xəta:', error);
@@ -46,14 +46,14 @@ const CreateTask = ({ onClose }) => {
         };
     
         try {
-            const response = await axios.post('https://localhost:7146/api/Task', formData, {
+            const response = await axios.post('http://test.loc/api/Task', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
     
             const taskId = response.data.data.id; 
-            await axios.post(`https://localhost:7146/api/UserTask/${taskId}/users/${executiveUserId}`);
+            await axios.post(`http://test.loc/api/UserTask/${taskId}/users/${executiveUserId}`);
             console.log("TaskId", taskId)
             console.log("Tapşırıq uğurla yaradıldı, ID:", taskId);
             onClose();

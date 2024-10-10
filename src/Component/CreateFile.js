@@ -26,7 +26,7 @@ const CreateFile = ({ onClose }) => {
         formData.append('taskId', id);  
         
         try {
-            await axios.post(`https://localhost:7146/api/File/upload`, formData, {
+            await axios.post(`http://test.loc/api/File/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

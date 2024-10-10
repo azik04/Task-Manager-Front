@@ -17,7 +17,7 @@ const SubTask = () => {
     useEffect(() => {
         const fetchNotDone = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/SubTask/${id}/NotDone`);
+                const res = await axios.get(`http://test.loc/api/SubTask/${id}/NotDone`);
                 console.log("Fetched Not Done SubTasks:", res.data.data);
                 setNotDoneItems(Array.isArray(res.data.data) ? res.data.data : []);
             } catch (error) {
@@ -33,7 +33,7 @@ const SubTask = () => {
     useEffect(() => {
         const fetchDone = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/SubTask/${id}/Done`);
+                const res = await axios.get(`http://test.loc/api/SubTask/${id}/Done`);
                 console.log("Fetched Done SubTasks:", res.data.data);
                 setDoneItems(Array.isArray(res.data.data) ? res.data.data : []);
             } catch (error) {
@@ -47,7 +47,7 @@ const SubTask = () => {
 
     const compTask = async (subTaskId) => {
         try {
-            const res = await axios.put(`https://localhost:7146/api/SubTask/${subTaskId}/Complite`, null, {
+            const res = await axios.put(`http://test.loc/api/SubTask/${subTaskId}/Complite`, null, {
                 headers: { 'Accept': '*/*' }
             });
             console.log(res);

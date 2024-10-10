@@ -18,7 +18,7 @@ const Comment = () => {
     useEffect(() => {
         const fetchData = async (id) => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/Comment?taskId=${id}`);
+                const res = await axios.get(`http://test.loc/api/Comment?taskId=${id}`);
                 console.log("Şərhlər", res.data);
                 const comments = res.data.data || [];
                 setItems(comments);
@@ -43,7 +43,7 @@ const Comment = () => {
 
         await Promise.all(userIds.map(async (userId) => {
             try {
-                const response = await axios.get(`https://localhost:7146/api/User/${userId}`);
+                const response = await axios.get(`http://test.loc/api/User/${userId}`);
                 console.log(`İstifadəçi ID ${userId} üçün cavab:`, response.data.data);
                 userMap[userId] = response.data.data.userName; 
             } catch (error) {

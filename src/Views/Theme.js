@@ -25,7 +25,7 @@ const Theme = () => {
         if (userId) {
             const fetchThemes = async () => {
                 try {
-                    const res = await axios.get(`https://localhost:7146/api/Theme/userId/${userId}`);
+                    const res = await axios.get(`http://test.loc/api/Theme/userId/${userId}`);
                     setData(res.data.data || []);
                 } catch (error) {
                     console.error('Layihələri əldə edərkən xəta:', error);
@@ -34,7 +34,7 @@ const Theme = () => {
 
             const fetchAddedThemes = async () => {
                 try {
-                    const res = await axios.get(`https://localhost:7146/api/UserTask/${userId}/theme`);
+                    const res = await axios.get(`http://test.loc/api/UserTask/${userId}/theme`);
                     setAdded(res.data || []);
                 } catch (error) {
                     console.error('Əlavə edilmiş layihələri əldə edərkən xəta:', error);

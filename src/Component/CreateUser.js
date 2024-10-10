@@ -13,7 +13,7 @@ const CreateUser = ({ onClose }) => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
 
         try {
-            const response = await axios.post('https://localhost:7146/api/User/register', {
+            const response = await axios.post('http://test.loc/api/User/register', {
                 email: email,
                 password: password,
                 userName: userName

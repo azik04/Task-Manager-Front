@@ -9,7 +9,7 @@ const RemoveTask = ({ onClose }) => {
 
     const remTask = async () => {
         try {
-            const res = await axios.delete(`https://localhost:7146/api/Task?id=${id}`);
+            const res = await axios.delete(`http://test.loc/api/Task?id=${id}`);
             console.log(res);
             onClose(); 
             navigate('/Theme'); 

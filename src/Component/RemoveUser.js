@@ -7,7 +7,7 @@ const RemoveUser = ({ onClose, userId }) => {
         try {
             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
 
-            await axios.delete(`https://localhost:7146/api/User?id=${userId}`); 
+            await axios.delete(`http://test.loc/api/User?id=${userId}`); 
             console.log("User removed:", userId);
             window.location.reload(); 
         } catch (error) {

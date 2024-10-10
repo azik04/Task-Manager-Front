@@ -9,7 +9,7 @@ const ChangeRole = ({ onClose, userId }) => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("JWT")}`;
 
         try {
-            const res = await axios.put(`https://localhost:7146/api/User/ChangeRole?id=${userId}`, {
+            const res = await axios.put(`http://test.loc/api/User/ChangeRole?id=${userId}`, {
                 newRole: newRole,
             });
             console.log(res);

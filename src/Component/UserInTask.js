@@ -15,7 +15,7 @@ const UserInTask = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/UserTask/${id}/users`);
+                const res = await axios.get(`http://test.loc/api/UserTask/${id}/users`);
                 console.log("Users", res.data);
                 setItems(res.data || []);
             } catch (error) {

@@ -11,7 +11,7 @@ const RemoveFile = ({ onClose, documentId }) => {
         setError(null);
         
         try {
-            const response = await axios.delete(`https://localhost:7146/api/File/${documentId}`);
+            const response = await axios.delete(`http://test.loc/api/File/${documentId}`);
             console.log('Fayl uğurla silindi');
             console.log(response);
             onClose();

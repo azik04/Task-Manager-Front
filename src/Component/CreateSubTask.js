@@ -23,7 +23,7 @@ const CreateSubTask = ({ onClose }) => {
 
     const fetchNew = async () => {
         try {
-            const res = await axios.post(`https://localhost:7146/api/SubTask`, {
+            const res = await axios.post(`http://test.loc/api/SubTask`, {
                 name: name,
                 priority: priority,
                 userId: userId,

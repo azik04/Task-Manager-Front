@@ -26,7 +26,7 @@ const Users = () => {
     useEffect(() => {
         const fetchAdmins = async () => {
             try {
-                const adminRes = await axios.get('https://localhost:7146/api/User/Admins');
+                const adminRes = await axios.get('http://test.loc/api/User/Admins');
                 setAdmins(adminRes.data.data);
                 console.log("adminRes", adminRes.data.data);
             } catch (error) {
@@ -39,7 +39,7 @@ const Users = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const userRes = await axios.get('https://localhost:7146/api/User/Users');
+                const userRes = await axios.get('http://test.loc/api/User/Users');
                 setUsers(userRes.data.data);
                 console.log("userRes", userRes.data.data);
             } catch (error) {

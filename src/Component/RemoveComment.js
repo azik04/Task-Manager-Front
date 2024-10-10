@@ -5,7 +5,7 @@ import Photo from '../Photos/Cancel.svg';
 const RemoveComment = ({ onClose, commentId }) => {
     const remItem = async () => {
         try {
-            const response = await axios.delete(`https://localhost:7146/api/Comment?id=${commentId}`);
+            const response = await axios.delete(`http://test.loc/api/Comment?id=${commentId}`);
             console.log('Şərh uğurla silindi', response.data);
             onClose();
             window.location.reload(); 

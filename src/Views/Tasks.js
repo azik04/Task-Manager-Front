@@ -23,7 +23,7 @@ const Tasks = () => {
     useEffect(() => {
         const fetchNotDone = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/Task/notdone?themeId=${themeId}`);
+                const res = await axios.get(`http://test.loc/api/Task/notdone?themeId=${themeId}`);
                 setItems(res.data.data);
                 fetchUserNames(res.data.data); 
             } catch (error) {
@@ -37,7 +37,7 @@ const Tasks = () => {
     useEffect(() => {
         const fetchDone = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/Task/done?themeId=${themeId}`);
+                const res = await axios.get(`http://test.loc/api/Task/done?themeId=${themeId}`);
                 setDone(res.data.data);
             } catch (error) {
                 console.error('Tamamlanmış tapşırıqları əldə edərkən xəta:', error);
@@ -59,7 +59,7 @@ const Tasks = () => {
     
         await Promise.all(userIds.map(async (id) => {
             try {
-                const response = await axios.get(`https://localhost:7146/api/User/${id}`);
+                const response = await axios.get(`http://test.loc/api/User/${id}`);
                 
                 console.log(`İstifadəçi ID ${id} üçün cavab:`, response.data.data);
                 
@@ -78,7 +78,7 @@ const Tasks = () => {
 
     const compTask = async (id) => {
         try {
-            await axios.put(`https://localhost:7146/api/Task/complite/${id}`, null, {
+            await axios.put(`http://test.loc/api/Task/complite/${id}`, null, {
                 headers: { 'Accept': '*/*' }
             });
             window.location.reload();

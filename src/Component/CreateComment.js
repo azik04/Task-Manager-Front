@@ -22,7 +22,7 @@ const CreateComment = ({ onClose }) => {
         console.log("Göndəriləcək məlumat:", commentData);  
 
         try {
-            const response = await axios.post(`https://localhost:7146/api/Comment`, commentData);
+            const response = await axios.post(`http://test.loc/api/Comment`, commentData);
             console.log("Şərh uğurla yaradıldı", response.data);
             onClose(); 
             window.location.reload();

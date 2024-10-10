@@ -14,7 +14,7 @@ const EditTask = ({ id, onClose }) => {
     useEffect(() => {
         const fetchTaskDetails = async () => {
             try {
-                const res = await axios.get(`https://localhost:7146/api/Task/${id}`);
+                const res = await axios.get(`http://test.loc/api/Task/${id}`);
                 const task = res.data.data;
                 setTaskName(task.taskName);
                 setTaskDescription(task.taskDescription);
@@ -38,7 +38,7 @@ const EditTask = ({ id, onClose }) => {
         setErrors({}); 
 
         try {
-            const res = await axios.put(`https://localhost:7146/api/Task?id=${id}`, {
+            const res = await axios.put(`http://test.loc/api/Task?id=${id}`, {
                 taskName,
                 taskDescription,
                 status,
